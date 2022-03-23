@@ -22,3 +22,19 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# statamic sub-folder stuff
+statamic/node_modules
+statamic/public/hot
+statamic/public/storage
+statamic/storage/*.key
+statamic/vendor
+statamic/.env
+statamic/.env.backup
+statamic/.phpunit.result.cache
+statamic/Homestead.json
+statamic/Homestead.yaml
+statamic/npm-debug.log
+statamic/yarn-error.log
+statamic/.idea
+statamic/.vscode

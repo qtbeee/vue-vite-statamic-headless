@@ -1,0 +1,14 @@
+title: Blogs
+template: blog/show
+revisions: false
+route: '/blog/{slug}'
+date: true
+sort_dir: asc
+default_status: draft
+date_behavior:
+  past: public
+  future: private
+preview_targets:
+  -
+    label: vue
+    url: http://localhost:3000/blog/{slug}
