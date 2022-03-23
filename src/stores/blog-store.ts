@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import type { BlogEntry } from "../domain/BlogEntry";
-import { getBlogEntries } from "../service/blog";
+import { getBlogEntries, getBlogEntry, getBlogEntryPreview } from "../service/blog";
 
 interface State {
   entries: BlogEntry[];
@@ -18,7 +18,19 @@ export const useBlogStore = defineStore("blog", {
   },
   actions: {
     async fetch() {
-      this.entries = await getBlogEntries();
-    }
+        this.entries = await getBlogEntries();
+    },
+    async fetchEntry(slug: string) {
+        const entry = await getBlogEntry(slug);
+        const index = this.entries.findIndex((blog) => blog.slug === slug);
+        if (index != -1) {
+          this.entries[index] = entry;
+        } else {
+          this.entries.push(entry);
+        }
+    },
+    async fetchPreview(slug: string, livePreviewToken: string) {
+      this.entries = [await getBlogEntryPreview(slug, livePreviewToken)];
+    },
   }
 });

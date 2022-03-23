@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { computed } from "vue";
+import { useRoute } from "vue-router";
 import { useBlogStore } from "../stores/blog-store";
+
+const route = useRoute();
 
 const props = defineProps({
   slug: { type: String, required: true },
@@ -10,7 +13,11 @@ const store = useBlogStore();
 const entry = computed(() => store.getEntryBySlug(props.slug));
 const date = computed(() => entry.value != null ? new Date(entry.value.date) : null);
 
-store.fetch();
+if (route.query['token'] != null) {
+  store.fetchPreview(props.slug, route.query['token'] as string);
+} else {
+  store.fetchEntry(props.slug);
+}
 </script>
 
 <template>
