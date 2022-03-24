@@ -1,5 +1,3 @@
-export const blogEntryFields = "title,thumbnail,summary,date,slug";
-
 export interface BlogEntry {
   // id: string, // do we need this?
   title: string,

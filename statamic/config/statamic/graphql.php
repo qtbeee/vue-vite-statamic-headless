@@ -14,13 +14,13 @@ return [
     |
     */
 
-    'enabled' => env('STATAMIC_GRAPHQL_ENABLED', false),
+    'enabled' => env('STATAMIC_GRAPHQL_ENABLED', true),
 
     'resources' => [
-        'collections' => false,
+        'collections' => true,
         'navs' => false,
         'taxonomies' => false,
-        'assets' => false,
+        'assets' => true,
         'globals' => false,
         'forms' => false,
         'sites' => false,
@@ -70,8 +70,11 @@ return [
     |
     */
 
-    'cache' => [
-        'expiry' => 60,
-    ],
+    // 'cache' => [
+        // 'expiry' => 60,
+    // ],
+    
+    // TODO(kristy): https://github.com/statamic/cms/issues/5389
+    'cache' => false,
 
 ];

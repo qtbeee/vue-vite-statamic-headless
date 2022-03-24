@@ -1,14 +1,53 @@
-import { BlogEntry, blogEntryFields } from "../domain/BlogEntry";
-import { getEntries, getEntry, getEntryPreview } from "./entry";
+import { gql } from "graphql-request";
+import type { BlogEntry } from "../domain/BlogEntry";
+import { graphqlRequest } from "./graphql";
+
+const API_BASE = import.meta.env["VITE_API_BASE"] as string;
 
 export async function getBlogEntries(): Promise<BlogEntry[]> {
-  return await getEntries<BlogEntry>('blog', blogEntryFields, { 'filter[status:is]': 'published' });  
+  const query = gql`
+  query {
+    entries(collection: "blog", filter: { status : "published" }) {
+      data {
+        id
+        title
+        slug
+        date
+        ... on Entry_Blog_Blog {
+          summary
+          thumbnail {
+            url
+          }
+          content
+        }
+      }
+    } 
+  }`;
+  
+  const response = await graphqlRequest<{ entries: { data: BlogEntry[] } }>(query);
+
+  return response.entries.data;
 }
 
-export async function getBlogEntry(slug: string): Promise<BlogEntry> {
-  return await getEntry<BlogEntry>('blog', blogEntryFields, slug);  
-}
+export async function getBlogEntry(slug: string, livePreviewToken?: string): Promise<BlogEntry> {
+  const query = gql`
+  query Entry($slug: String) {
+    entry(collection: "blog", slug: $slug, filter: { status : "published" }) {
+      id
+      title
+      slug
+      date
+      ... on Entry_Blog_Blog {
+        summary
+        thumbnail {
+          url
+        }
+        content
+      }
+    } 
+  }`;
 
-export async function getBlogEntryPreview(slug: string, livePreviewToken: string): Promise<BlogEntry> {
-  return await getEntryPreview<BlogEntry>('blog', blogEntryFields, slug, livePreviewToken);  
+  const response = await graphqlRequest<{ entry: BlogEntry  }>(query, { slug }, livePreviewToken);
+  console.log(response.entry);
+  return response.entry;
 }

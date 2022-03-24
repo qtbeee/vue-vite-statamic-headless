@@ -14,7 +14,7 @@ const entry = computed(() => store.getEntryBySlug(props.slug));
 const date = computed(() => entry.value != null ? new Date(entry.value.date) : null);
 
 if (route.query['token'] != null) {
-  store.fetchPreview(props.slug, route.query['token'] as string);
+  store.fetchEntry(props.slug, route.query['token'] as string);
 } else {
   store.fetchEntry(props.slug);
 }
