@@ -16,16 +16,24 @@
 
 ### Running this example project
 1. Make sure you have the Docker service running
-2. Go into the statamic folder and start the cms server
+2. Go into the statamic folder
 ```bash
 > cd ./statamic
+```
+3. Install dependencies (only needed the first time, see https://laravel.com/docs/8.x/sail#installing-composer-dependencies-for-existing-projects)
+```bash
+> docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -v $(pwd):/var/www/html \
+    -w /var/www/html \
+    laravelsail/php81-composer:latest \
+    composer install --ignore-platform-reqs
+```
+4. Run the statamic server
+```bash
 > ./vendor/bin/sail up -d
 ```
-3. Install dependencies for Statamic (only needed the first time around)
-```bash
-> ./vendor/bin/sail composer install
-```
-4. Go back to the root of the project, install packages and start the dev server
+5. Go back to the root of the project, install packages and start the dev server
 ```bash
 > pnpm i
 > pnpm dev
