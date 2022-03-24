@@ -2,8 +2,6 @@ import { gql } from "graphql-request";
 import type { BlogEntry } from "../domain/BlogEntry";
 import { graphqlRequest } from "./graphql";
 
-const API_BASE = import.meta.env["VITE_API_BASE"] as string;
-
 export async function getBlogEntries(): Promise<BlogEntry[]> {
   const query = gql`
   query {

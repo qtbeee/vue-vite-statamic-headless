@@ -1,15 +1,10 @@
 import { createRouter, createWebHistory, Router, RouteRecordRaw, RouterOptions } from "vue-router";
-import Page from "./pages/Page.vue";
 import Blog from "./pages/Blog.vue";
 import BlogArticle from "./pages/BlogArticle.vue";
 
 const routes: RouteRecordRaw[] = [
   {
-    path: "/:pathMatch(.*)*",
-    component: Page,
-  },
-  {
-    path: "/blog",
+    path: "/",
     name: 'blog',
     component: Blog,
   },
