@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { API_BASE } from '../service/entry';
+import { API_BASE } from '../service/graphql';
 import { useBlogStore } from '../stores/blog-store';
 
 const blogStore = useBlogStore();
