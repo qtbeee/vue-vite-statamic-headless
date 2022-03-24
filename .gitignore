@@ -27,6 +27,7 @@ dist-ssr
 statamic/node_modules
 statamic/public/hot
 statamic/public/storage
+statamic/public/vendor
 statamic/storage/*.key
 statamic/vendor
 statamic/.env

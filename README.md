@@ -15,13 +15,17 @@
 - The rest of this is your usual Vite + Vue setup
 
 ### Running this example project
-1. Make sure you have the Docker service running.
+1. Make sure you have the Docker service running
 2. Go into the statamic folder and start the cms server
 ```bash
 > cd ./statamic
 > ./vendor/bin/sail up -d
 ```
-3. Go back to the root of the project, install packages and start the dev server
+3. Install dependencies for Statamic (only needed the first time around)
+```bash
+> ./vendor/bin/sail composer install
+```
+4. Go back to the root of the project, install packages and start the dev server
 ```bash
 > pnpm i
 > pnpm dev
@@ -37,3 +41,4 @@
 - Speaking of Live Preview, this project sets up the Vue portion to be the source of the live preview when editing content while in Statamic Control Panel. See `statamic/content/collections/blog.yaml` as an example of setting the live preview target, and https://statamic.dev/live-preview#headless-frontend-frameworks
 - The REST API Statamic has is incomplete relative to the Graphql API so that's why we're stuck with Graphql for now. See https://github.com/statamic/cms/issues/5609 (this issue was closed the same day I saw it but there's no release yet?)
 - I'm sure there's plenty of stuff in the `statamic/` directory that could be deleted since we don't use it for this headless cms use-case, but I don't know much about Laravel so I'll be leaving it alone :P 
+- The Graphql tool in the Statamic Control Panel is very nice, make sure to use it when trying to figure out how/what you can ask for from the api.
