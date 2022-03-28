@@ -20,7 +20,8 @@
 ```bash
 > cd ./statamic
 ```
-3. Install dependencies (only needed the first time, see https://laravel.com/docs/8.x/sail#installing-composer-dependencies-for-existing-projects)
+3. Make a copy of `.env.example` and rename it to `.env`, or just make an empty one. Either way.
+4. Install dependencies (only needed the first time, see https://laravel.com/docs/9.x/sail#installing-composer-dependencies-for-existing-projects)
 ```bash
 > docker run --rm \
     -u "$(id -u):$(id -g)" \
@@ -29,15 +30,15 @@
     laravelsail/php80-composer:latest \
     composer install --ignore-platform-reqs
 ```
-4. Run the statamic server
+5. Run the statamic server
 ```bash
 > ./vendor/bin/sail up -d
 ```
-5. Generate an encryption key for the Laravel app (accessing the api is fine without this, but accessing the control panel will not work)
+6. Generate an encryption key for the Laravel app (accessing the api is fine without this, but accessing the control panel will not work)
 ```bash
 > ./vendor/bin/sail artisan key:generate
 ```
-6. Go back to the root of the project, install packages and start the dev server
+7. Go back to the root of the project, install packages and start the dev server
 ```bash
 > pnpm i
 > pnpm dev
