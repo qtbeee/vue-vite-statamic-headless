@@ -33,7 +33,11 @@
 ```bash
 > ./vendor/bin/sail up -d
 ```
-5. Go back to the root of the project, install packages and start the dev server
+5. Generate an encryption key for the Laravel app (accessing the api is fine without this, but accessing the control panel will not work)
+```bash
+> ./vendor/bin/sail artisan key:generate
+```
+6. Go back to the root of the project, install packages and start the dev server
 ```bash
 > pnpm i
 > pnpm dev
