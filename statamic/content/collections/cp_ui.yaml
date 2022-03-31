@@ -1,0 +1,12 @@
+title: 'cp ui'
+revisions: false
+route: '/ui/{slug}'
+date: true
+sort_dir: asc
+date_behavior:
+  past: public
+  future: private
+preview_targets:
+  -
+    label: Vue
+    url: 'http://localhost:3000/ui/{slug}'

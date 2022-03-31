@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory, Router, RouteRecordRaw, RouterOptions } from "vue-router";
 import Blog from "./pages/Blog.vue";
 import BlogArticle from "./pages/BlogArticle.vue";
+import Ui from "./pages/Ui.vue";
+import UiArticle from "./pages/UiArticle.vue";
 
 const routes: RouteRecordRaw[] = [
   {
@@ -13,6 +15,16 @@ const routes: RouteRecordRaw[] = [
     component: BlogArticle,
     props: (route) => ({ slug: route.params["slug"] as string }),
   },
+  {
+    path: "/ui",
+    name: "ui",
+    component: Ui,
+  },
+  {
+    path: "/ui/:slug",
+    component: UiArticle,
+    props: (route) => ({ slug: route.params["slug"] as string }),
+  }
 ];
 
 const routerOptions: RouterOptions = {
